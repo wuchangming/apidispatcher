@@ -23,6 +23,7 @@ HandlerMapping 会根据Rsp_Header 的 cmd值分发到对应 `@ApiCmdMapping` �
 类型为JSON同时有`@ReqBodyJson`注解的直接传入解析好的reqBodyJson对象。  
 
 ```java
+@ApiCmdMapping("cmd_name1")   //  "cmd_name1" 对应cmd的值
 public @ResponseBody String cmdXHandler(Req_header req_header, @ReqBodyJson JSON reqBodyJson /*... other param:  */){
 
     // ....;
