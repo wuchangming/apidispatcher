@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+         <context:component-scan
+            base-package="com.woqu.apidispatcher.*"/> 
+
+<bean name="handlerAdapter"
+ class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">    
+    <property name="messageConverters">
+        <list>
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"></bean>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+            	<!--  可以解决直接@ResponseBody 返回中文String的乱码问题。不过。。。一般也不会直接返回中文String。  -->
+            	<property name = "supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>   
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"></bean>
+            <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"></bean>
+            <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"></bean>
+            <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
+        </list>
+    </property>
+    <property name="customArgumentResolvers">
+    	<list>
+    		<bean class="com.woqu.apidispatcher.handler.method.ApiRequestMethodArgumentResolver"></bean>
+    	</list>
+    </property>
+</bean>
+
+<bean class="com.woqu.apidispatcher.handler.WoQuApiRequestMappingHandlerMapping">
+</bean> 
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+</bean>
+	
+
+</beans>
