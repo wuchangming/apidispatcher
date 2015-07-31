@@ -22,7 +22,7 @@ public class OriginController {
 	
 	@RequestMapping("mobile")
 	public @ResponseBody String mobile() {
-		return "origin Mobile【原始】";
+		return "mapping origin Mobile【原始】";
 	}
 
 }

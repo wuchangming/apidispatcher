@@ -8,14 +8,14 @@ import com.woqu.apidispatcher.handler.annotation.ApiCmdMapping;
 @Controller
 public class ApiController2 {
 	
-	@ApiCmdMapping({"cmd4", "cmd41"})
+	@ApiCmdMapping({"cmd_name4", "cmd_name41"})
 	public @ResponseBody String mobile() {
-		return "cmd4 WOQUWAP001";
+		return "both mapping 'cmd_name4' and 'cmd_name41'";
 	}
 	
-	@ApiCmdMapping(value = "cmd5")
+	@ApiCmdMapping(value = "cmd_name5")
 	public @ResponseBody String mobile2(){
-		return "cmd5";
+		return "mapping cmd_name5";
 	}
 	
 }
