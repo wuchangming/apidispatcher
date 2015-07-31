@@ -1,6 +1,6 @@
 # apidispatcher
 
-api 根据Rsp_Header 的 cmd值进行分发
+api 根据Rsp_Header 的 cmd值进行分发。
 
 ##说明
 ### 1.`@ApiCmdMapping`
