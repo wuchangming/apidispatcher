@@ -38,6 +38,21 @@
 </bean>
 
 <bean class="com.woqu.apidispatcher.handler.WoQuApiRequestMappingHandlerMapping">
+	<!-- 
+			拦截器的使用按照下面的进行配置即可，不能用<mvc:interceptors></mvc:interceptors>！！否则配置Mapping路径是不能生效
+		 -->
+		<property name="interceptors">
+            <list>
+				<bean class="org.springframework.web.servlet.handler.MappedInterceptor">
+				    <constructor-arg index="0">
+				        <value>/mobile</value>
+				    </constructor-arg>
+				    <constructor-arg index="1">
+				        <bean class="com.woqu.apidispatcher.servlet.interceptor.WoquApiHandlerInterceptor"/>
+				    </constructor-arg>
+				</bean>
+            </list>
+        </property>
 </bean> 
 
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

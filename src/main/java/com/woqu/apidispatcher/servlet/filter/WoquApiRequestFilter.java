@@ -34,20 +34,6 @@ public class WoquApiRequestFilter implements Filter {
 			throws IOException, ServletException {
 		
 		MultiReadHttpServletRequest multiReadRequest = new MultiReadHttpServletRequest((HttpServletRequest) request);
-		if (response instanceof HttpServletResponse) {
-			
-			HttpServletRequest req = (HttpServletRequest) request;
-            HttpServletResponse res = (HttpServletResponse) response;
-            String protocal =req.getHeader("X-Forwarded-Proto");
-		
-	        if(protocal==null||protocal.equalsIgnoreCase("http")) {
-	        	res.addHeader("Access-Control-Allow-Credentials", "true");
-	        	res.addHeader("Access-Control-Allow-Origin", "http://m.woqu.com");  
-	        }else if(protocal.equalsIgnoreCase("https")){
-	        	res.addHeader("Access-Control-Allow-Credentials", "true");
-	        	res.addHeader("Access-Control-Allow-Origin", "https://m.woqu.com");
-	        }
-		}
 	    chain.doFilter(multiReadRequest, response);
 	}
 
