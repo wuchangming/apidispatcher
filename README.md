@@ -1,6 +1,7 @@
 # apidispatcher
 
 api 根据Rsp_Header 的 cmd值进行分发。
+![Image](images/API Dispatcher.jpg?raw=true)
 
 ##说明
 ### 1.`@ApiCmdMapping`
